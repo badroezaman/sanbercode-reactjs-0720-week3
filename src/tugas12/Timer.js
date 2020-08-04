@@ -1,15 +1,10 @@
 import React, { Component } from "react";
 
-// function Counter(props) {
-//   const count = props.count;
-// }
-
-class Count extends Component {
+class Timer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      time: this.props.default,
-      date: new Date(),
+      time: 0,
     };
   }
 
@@ -20,6 +15,12 @@ class Count extends Component {
     this.timerID = setInterval(() => this.tick(), 1000);
   }
 
+  componentDidUpdate() {
+    if (this.state.time === 0) {
+      this.componentWillUnmount();
+    }
+  }
+
   componentWillUnmount() {
     clearInterval(this.timerID);
   }
@@ -27,22 +28,15 @@ class Count extends Component {
   tick() {
     this.setState({
       time: this.state.time - 1,
-      date: new Date(),
     });
   }
 
   render() {
-    // return <>Hitung mundur: {this.state.time}</>;
     return (
       <>
         <div className="col">
-          <div className="item">
-            <h3>Sekarang jam: {this.state.date.toLocaleTimeString()}</h3>
-          </div>
-        </div>
-        <div className="col">
           <div className="item counter">
-            <h3>Hitung mundur: {this.state.time}</h3>
+            {this.state.time === 0 || <h3>Hitung mundur: {this.state.time}</h3>}
           </div>
         </div>
       </>
@@ -50,10 +44,4 @@ class Count extends Component {
   }
 }
 
-class Counter extends Component {
-  render() {
-    return <Count default={10} />;
-  }
-}
-
-export default Counter;
+export default Timer;

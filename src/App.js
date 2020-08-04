@@ -1,36 +1,25 @@
 import React from "react";
 import "./App.css";
 // import UserInfo from "./UserInfo";
-import Table from "./tugas11/Table";
-// import Timer from "./tugas12/Timer";
-import Counter from "./tugas12/Counter";
-// import Clock from "./tugas12/Clock";
+import Header from "./Header";
+import DaftarBuah from "./tugas11/DaftarBuah";
+import Timer from "./tugas12/Timer";
+import Clock from "./tugas12/Clock";
 
 function App() {
   return (
     <div className="App">
+      <Header />
       <div className="Title">
         <h1>Tabel Harga Buah</h1>
       </div>
       <div className="container">
-        <Table />
+        <DaftarBuah />
       </div>
       <div className="container">
-        <Counter />
+        <Clock />
+        <Timer start={10} />
       </div>
-
-      {/* <div className="container">
-        <div className="col">
-          <div className="item">
-            <Clock />
-          </div>
-        </div>
-        <div className="col">
-          <div className="item counter">
-            <Counter />
-          </div>
-        </div>
-      </div> */}
     </div>
   );
 }

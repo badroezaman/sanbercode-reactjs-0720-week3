@@ -37,6 +37,12 @@
   }
 }
 
+header {
+  background-color: #003366;
+  color: #ffffff;
+  padding: 1em 0;
+}
+
 .Title {
   text-align: center;
 }

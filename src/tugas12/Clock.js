@@ -1,9 +1,4 @@
 import React, { Component } from "react";
-
-// function Clocks(props) {
-//   return <h2>Sekarang jam {props.date.toLocaleTimeString()}.</h2>;
-// }
-
 class Clock extends Component {
   constructor(props) {
     super(props);
@@ -29,7 +24,11 @@ class Clock extends Component {
   render() {
     return (
       <>
-        <h3>Sekarang jam: {this.state.date.toLocaleTimeString()}</h3>
+        <div className="col">
+          <div className="item">
+            <h3>Sekarang jam: {this.state.date.toLocaleTimeString()}</h3>
+          </div>
+        </div>
       </>
     );
   }
