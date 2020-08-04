@@ -13,15 +13,15 @@ class DaftarBuah extends Component {
 
     return (
       <>
-        <table style={{ border: "1px solid", width: "40%", margin: "0 auto" }}>
-          <thead style={{ background: "#aaa" }}>
+        <table>
+          <thead>
             <tr>
               <th>Nama</th>
               <th>Harga</th>
               <th>Berat</th>
             </tr>
           </thead>
-          <tbody style={{ background: "coral" }}>
+          <tbody>
             {dataHargaBuah.map((el, index) => {
               return (
                 <>
