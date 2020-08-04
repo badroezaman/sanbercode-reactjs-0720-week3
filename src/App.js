@@ -18,7 +18,7 @@ function App() {
       </div>
       <div className="container">
         <Clock />
-        <Timer start={10} />
+        <Timer start={120} />
       </div>
     </div>
   );
