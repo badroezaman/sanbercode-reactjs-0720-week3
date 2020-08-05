@@ -3,8 +3,9 @@ import "./App.css";
 // import UserInfo from "./UserInfo";
 import Header from "./Header";
 import DaftarBuah from "./tugas11/DaftarBuah";
+// import DaftarBuah from "./tugas13/DaftarBuah";
+// import Lists from "./tugas13/List";
 import Timer from "./tugas12/Timer";
-import Clock from "./tugas12/Clock";
 
 function App() {
   return (
@@ -13,11 +14,13 @@ function App() {
       <div className="Title">
         <h1>Tabel Harga Buah</h1>
       </div>
+      {/* <div className="container">
+        <Lists />
+      </div> */}
       <div className="container">
         <DaftarBuah />
       </div>
       <div className="container">
-        <Clock />
         <Timer start={120} />
       </div>
     </div>

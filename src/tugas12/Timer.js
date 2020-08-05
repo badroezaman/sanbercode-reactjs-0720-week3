@@ -5,6 +5,7 @@ class Timer extends Component {
     super(props);
     this.state = {
       time: 0,
+      date: new Date(),
     };
   }
 
@@ -15,11 +16,7 @@ class Timer extends Component {
     this.timerID = setInterval(() => this.tick(), 1000);
   }
 
-  componentDidUpdate() {
-    if (this.state.time === 0) {
-      this.componentWillUnmount();
-    }
-  }
+  componentDidUpdate() {}
 
   componentWillUnmount() {
     clearInterval(this.timerID);
@@ -28,17 +25,27 @@ class Timer extends Component {
   tick() {
     this.setState({
       time: this.state.time - 1,
+      date: new Date(),
     });
   }
 
   render() {
     return (
       <>
-        <div className="col">
-          <div className="item counter">
-            {this.state.time === 0 || <h3>Hitung mundur: {this.state.time}</h3>}
-          </div>
-        </div>
+        {this.state.time > 0 && (
+          <>
+            <div className="col">
+              <div className="item">
+                <h3>Sekarang jam: {this.state.date.toLocaleTimeString()}</h3>
+              </div>
+            </div>
+            <div className="col">
+              <div className="item counter">
+                <h3>Hitung mundur: {this.state.time}</h3>
+              </div>
+            </div>
+          </>
+        )}
       </>
     );
   }
