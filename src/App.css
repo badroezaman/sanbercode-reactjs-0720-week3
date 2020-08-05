@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .App {
   text-align: left;
 }
@@ -41,6 +45,7 @@ header {
   background-color: #003366;
   color: #ffffff;
   padding: 1em 0;
+  width: 100%;
 }
 
 .Title {
@@ -56,6 +61,7 @@ header {
 }
 
 table {
+  table-layout: fixed;
   width: 100%;
   border: 1px solid #282c34;
   margin-left: auto;
@@ -71,11 +77,69 @@ tbody > tr > td {
   padding: 0.2em 0.5em;
 }
 
+.col-25 {
+  float: left;
+  width: 25%;
+}
+
 .col {
-  position: relative;
+  /* position: relative; */
   width: 50%;
   float: left;
   padding: 0.5em 0;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+form {
+  margin-bottom: 2em;
+  background-color: #f2f2f2;
+  border-radius: 0.5em;
+  padding: 1.5em;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 0.75em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  margin-bottom: 0.5em;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+}
+
+input[type="text"]:focus {
+  border: 1px solid #3598db;
+}
+
+label {
+  padding: 0.75em 0.75em 0.75em 0;
+  display: inline-block;
+}
+
+button[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+  padding: 0.75em 2em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
 }
 
 .item {
