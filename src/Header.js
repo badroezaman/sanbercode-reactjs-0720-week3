@@ -1,21 +1,17 @@
-import React, { Component } from "react";
+import React from "react";
 
-class Header extends Component {
-  constructor() {
-    super();
-    this.state = {
-      title: "Sanbercode Reactjs Week 3",
-    };
-  }
-  render() {
-    return (
-      <header>
-        <div className="container">
-          <h1 className="Title">{this.state.title}</h1>
-        </div>
-      </header>
-    );
-  }
-}
+const Header = () => {
+  return (
+    <>
+      <div className="header">
+        <header>
+          <div className="container">
+            <h1 className="Title">Sanbercode Reactjs Week 3</h1>
+          </div>
+        </header>
+      </div>
+    </>
+  );
+};
 
 export default Header;
