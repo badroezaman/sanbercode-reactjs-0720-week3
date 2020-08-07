@@ -24,7 +24,7 @@ const Nav = () => {
               Home
             </Link>
           </li>
-          <li
+          {/* <li
             style={{
               padding: ".5em 1em",
               borderBottom: ".1em solid #f9e03c",
@@ -41,7 +41,7 @@ const Nav = () => {
             >
               Daftar Buah
             </Link>
-          </li>
+          </li> */}
           <li
             style={{
               padding: ".5em 1em",
@@ -112,24 +112,6 @@ const Nav = () => {
               }}
             >
               List Context
-            </Link>
-          </li>
-          <li
-            style={{
-              padding: ".5em 1em",
-              borderBottom: ".1em solid #f9e03c",
-              margin: "0 .1em",
-            }}
-          >
-            <Link
-              to="/movie"
-              style={{
-                textDecoration: "none",
-                color: "#003366",
-                fontWeight: "bold",
-              }}
-            >
-              Movie
             </Link>
           </li>
         </ul>
