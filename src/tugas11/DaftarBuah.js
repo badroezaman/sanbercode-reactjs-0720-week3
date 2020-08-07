@@ -13,24 +13,27 @@ class DaftarBuah extends Component {
 
     return (
       <>
-        <table>
-          <thead>
-            <tr>
-              <th>Nama</th>
-              <th>Harga</th>
-              <th>Berat</th>
-            </tr>
-          </thead>
-          <tbody>
-            {dataHargaBuah.map((el, index) => {
-              return (
-                <>
-                  <ItemBuah item={el} key={index} />
-                </>
-              );
-            })}
-          </tbody>
-        </table>
+        <div className="container">
+          <h1>Daftar Harga Buah [Tugas - 11]</h1>
+          <table>
+            <thead>
+              <tr>
+                <th>Nama</th>
+                <th>Harga</th>
+                <th>Berat</th>
+              </tr>
+            </thead>
+            <tbody>
+              {dataHargaBuah.map((el, index) => {
+                return (
+                  <>
+                    <ItemBuah item={el} key={index} />
+                  </>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       </>
     );
   }

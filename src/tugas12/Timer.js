@@ -32,20 +32,23 @@ class Timer extends Component {
   render() {
     return (
       <>
-        {this.state.time > 0 && (
-          <>
-            <div className="col">
-              <div className="item">
-                <h3>Sekarang jam: {this.state.date.toLocaleTimeString()}</h3>
+        <div className="container">
+          {this.state.time >= 0 && (
+            <>
+              <h1>Timer [Tugas - 12]</h1>
+              <div className="col">
+                <div className="item">
+                  <h3>Sekarang jam: {this.state.date.toLocaleTimeString()}</h3>
+                </div>
               </div>
-            </div>
-            <div className="col">
-              <div className="item counter">
-                <h3>Hitung mundur: {this.state.time}</h3>
+              <div className="col">
+                <div className="item counter">
+                  <h3>Hitung mundur: {this.state.time}</h3>
+                </div>
               </div>
-            </div>
-          </>
-        )}
+            </>
+          )}
+        </div>
       </>
     );
   }

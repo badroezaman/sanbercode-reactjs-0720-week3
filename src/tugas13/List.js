@@ -124,86 +124,88 @@ class Lists extends Component {
   render() {
     return (
       <>
-        <h1>Daftar Harga Buah</h1>
-        <table>
-          <thead>
-            <tr>
-              <th>Nama</th>
-              <th>Harga</th>
-              <th>Berat</th>
-              <th>Act</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.dataHargaBuah.map((val, index) => {
-              return (
-                <tr key={index}>
-                  <td>{val.nama}</td>
-                  <td>Rp {val.harga}</td>
-                  <td>{val.berat / 1000} kg</td>
-                  <td>
-                    <button onClick={this.handleEdit} value={index}>
-                      Edit
-                    </button>
-                    &nbsp;
-                    <button onClick={this.handleDelete} value={index}>
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-        {/* Form */}
-        <h1>Form Tambah Buah</h1>
-        <form onSubmit={this.handleSubmit}>
-          <div className="row">
-            <div className="col-25">
-              <label>Nama</label>
+        <div className="container">
+          <h1>Daftar Harga Buah [Tugas - 13]</h1>
+          <table>
+            <thead>
+              <tr>
+                <th>Nama</th>
+                <th>Harga</th>
+                <th>Berat</th>
+                <th>Act</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.dataHargaBuah.map((val, index) => {
+                return (
+                  <tr key={index}>
+                    <td>{val.nama}</td>
+                    <td>Rp {val.harga}</td>
+                    <td>{val.berat / 1000} kg</td>
+                    <td>
+                      <button onClick={this.handleEdit} value={index}>
+                        Edit
+                      </button>
+                      &nbsp;
+                      <button onClick={this.handleDelete} value={index}>
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+          {/* Form */}
+          <h1>Form Tambah Buah</h1>
+          <form onSubmit={this.handleSubmit}>
+            <div className="row">
+              <div className="col-25">
+                <label>Nama</label>
+              </div>
+              <div className="col-75">
+                <input
+                  type="text"
+                  name="inputName"
+                  value={this.state.inputName}
+                  onChange={this.handleChange}
+                  placeholder="Nama Buah"
+                />
+              </div>
             </div>
-            <div className="col-75">
-              <input
-                type="text"
-                name="inputName"
-                value={this.state.inputName}
-                onChange={this.handleChange}
-                placeholder="Nama Buah"
-              />
+            <div className="row">
+              <div className="col-25">
+                <label>Harga</label>
+              </div>
+              <div className="col-75">
+                <input
+                  type="text"
+                  name="inputPrice"
+                  value={this.state.inputPrice}
+                  onChange={this.handleChange}
+                  placeholder="Harga Buah"
+                />
+              </div>
             </div>
-          </div>
-          <div className="row">
-            <div className="col-25">
-              <label>Harga</label>
+            <div className="row">
+              <div className="col-25">
+                <label>Berat</label>
+              </div>
+              <div className="col-75">
+                <input
+                  type="text"
+                  name="inputWeight"
+                  value={this.state.inputWeight}
+                  onChange={this.handleChange}
+                  placeholder="Satuan Gram"
+                />
+              </div>
             </div>
-            <div className="col-75">
-              <input
-                type="text"
-                name="inputPrice"
-                value={this.state.inputPrice}
-                onChange={this.handleChange}
-                placeholder="Harga Buah"
-              />
+            <div className="row">
+              <button type="submit">Submit</button>
             </div>
-          </div>
-          <div className="row">
-            <div className="col-25">
-              <label>Berat</label>
-            </div>
-            <div className="col-75">
-              <input
-                type="text"
-                name="inputWeight"
-                value={this.state.inputWeight}
-                onChange={this.handleChange}
-                placeholder="Satuan Gram"
-              />
-            </div>
-          </div>
-          <div className="row">
-            <button type="submit">Submit</button>
-          </div>
-        </form>
+          </form>
+        </div>
       </>
     );
   }

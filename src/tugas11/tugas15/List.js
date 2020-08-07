@@ -3,9 +3,10 @@ import axios from "axios";
 
 const Lists = () => {
   const [dataHargaBuah, setDataHargaBuah] = useState(null);
-  const [inputName, setInputName] = useState("");
-  const [inputPrice, setInputPrice] = useState("");
-  const [inputWeight, setInputWeight] = useState("");
+  const [input, setInput] = useState({ nama: "", harga: "", berat: 0 });
+  // const [inputName, setInputName] = useState("");
+  // const [inputPrice, setInputPrice] = useState("");
+  // const [inputWeight, setInputWeight] = useState("");
   const [selectedID, setSelectedID] = useState(0);
   const [statusForm, setStatusForm] = useState("create");
 
@@ -46,32 +47,33 @@ const Lists = () => {
     let idBuah = parseInt(event.target.value);
     let buah = dataHargaBuah.find((el) => el.id === idBuah);
     console.log(buah);
-    setInputName(buah.nama);
-    setInputPrice(buah.harga);
-    setInputWeight(buah.berat);
+    setInput({ nama: buah.nama, harga: buah.harga, berat: buah.berat });
+    // setInputName(buah.nama);
+    // setInputPrice(buah.harga);
+    // setInputWeight(buah.berat);
     setSelectedID(idBuah);
     setStatusForm("edit");
   };
 
   const handleChangeName = (event) => {
     const newValue = event.target.value;
-    setInputName(newValue);
+    setInput({ ...input, nama: newValue });
   };
   const handleChangePrice = (event) => {
     const newValue = event.target.value;
-    setInputPrice(newValue);
+    setInput({ ...input, harga: newValue });
   };
   const handleChangeWeight = (event) => {
     const newValue = event.target.value;
-    setInputWeight(newValue);
+    setInput({ ...input, berat: newValue });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    let name = inputName;
-    let price = inputPrice;
-    let weight = inputWeight;
+    let name = input.nama;
+    let price = input.harga;
+    let weight = input.berat;
 
     if (
       name.replace(/\s/g, "") !== "" &&
@@ -113,16 +115,17 @@ const Lists = () => {
 
       setStatusForm("create");
       setSelectedID(0);
-      setInputName("");
-      setInputPrice("");
-      setInputWeight("");
+      setInput({ nama: "", harga: "", berat: "" });
+      // setInputName("");
+      // setInputPrice("");
+      // setInputWeight("");
     }
   };
 
   return (
     <>
       <div className="container">
-        <h1>Daftar Harga Buah [Tugas - 14]</h1>
+        <h1>Daftar Harga Buah [Tugas - 15]</h1>
         <table>
           <thead>
             <tr>
@@ -164,8 +167,8 @@ const Lists = () => {
             <div className="col-75">
               <input
                 type="text"
-                name="inputName"
-                value={inputName}
+                name="nama"
+                value={input.nama}
                 onChange={handleChangeName}
                 placeholder="Nama Buah"
               />
@@ -178,8 +181,8 @@ const Lists = () => {
             <div className="col-75">
               <input
                 type="text"
-                name="inputPrice"
-                value={inputPrice}
+                name="harga"
+                value={input.harga}
                 onChange={handleChangePrice}
                 placeholder="Harga Buah"
               />
@@ -192,8 +195,8 @@ const Lists = () => {
             <div className="col-75">
               <input
                 type="text"
-                name="inputWeight"
-                value={inputWeight}
+                name="berat"
+                value={input.berat}
                 onChange={handleChangeWeight}
                 placeholder="Satuan Gram"
               />
