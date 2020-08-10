@@ -10,7 +10,8 @@ const Nav = () => {
       <nav
         style={{
           textAlign: "center",
-          background: theme === "dark" ? "navy" : "",
+          background: theme === "dark" ? "#002142" : "",
+          color: theme === "dark" ? "#ffffff" : "",
         }}
       >
         <ul style={{ listStyle: "none", display: "inline-flex", padding: "0" }}>

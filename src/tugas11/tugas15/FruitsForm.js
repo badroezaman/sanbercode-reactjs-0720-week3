@@ -1,117 +1,94 @@
-import React, { useContext, useState } from "react";
-import { FruitsContext } from "./FruitsContext";
+import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
+import { FruitsContext } from "./FruitsContext";
 
 const FruitsForm = () => {
-  const [input, setInput] = useState({ nama: "", harga: "", berat: "" });
-  const [selectedID, setSelectedID] = useState(0);
-  const [statusForm, setStatusForm] = useState("create");
   const [dataHargaBuah, setDataHargaBuah] = useContext(FruitsContext);
+  const [input, setInput] = useState({ name: "", price: "", weight: 0 });
 
-  //   useEffect(() => {
-  //     if (dataHargaBuah === null) {
-  //       axios
-  //         .get(`http://backendexample.sanbercloud.com/api/fruits`)
-  //         .then((res) => {
-  //           setDataHargaBuah(
-  //             res.data.map((el) => {
-  //               return {
-  //                 id: el.id,
-  //                 nama: el.name,
-  //                 harga: el.price,
-  //                 berat: el.weight,
-  //               };
-  //             })
-  //           );
-  //         });
-  //     }
-  //   }, [dataHargaBuah]);
-
-  //   const handleDelete = (event) => {
-  //     let idBuah = parseInt(event.target.value);
-  //     let newDataHargaBuah = dataHargaBuah.filter((el) => el.id !== idBuah);
-  //     // console.log(newDataHargaBuah);
-
-  //     axios
-  //       .delete(`http://backendexample.sanbercloud.com/api/fruits/${idBuah}`)
-  //       .then((res) => {
-  //         console.log(res);
-  //       });
-
-  //     setDataHargaBuah([...newDataHargaBuah]);
-  //   };
-
-  //   const handleEdit = (event) => {
-  //     let idBuah = parseInt(event.target.value);
-  //     let buah = dataHargaBuah.find((el) => el.id === idBuah);
-  //     console.log(buah);
-  //     setInput({ nama: buah.nama, harga: buah.harga, berat: buah.berat });
-  //     setSelectedID(idBuah);
-  //     setStatusForm("edit");
-  //   };
+  useEffect(() => {
+    if (dataHargaBuah.statusForm === "changeToEdit") {
+      let dataBuah = dataHargaBuah.lists.find(
+        (x) => x.id === dataHargaBuah.selectedId
+      );
+      setInput({
+        name: dataBuah.name,
+        price: dataBuah.price,
+        weight: dataBuah.weight,
+      });
+      setDataHargaBuah({ ...dataHargaBuah, statusForm: "edit" });
+    }
+  }, [dataHargaBuah]);
 
   const handleChangeName = (event) => {
     const newValue = event.target.value;
-    setInput({ ...input, nama: newValue });
+    setInput({ ...input, name: newValue });
   };
   const handleChangePrice = (event) => {
     const newValue = event.target.value;
-    setInput({ ...input, harga: newValue });
+    setInput({ ...input, price: newValue });
   };
   const handleChangeWeight = (event) => {
     const newValue = event.target.value;
-    setInput({ ...input, berat: newValue });
+    setInput({ ...input, weight: newValue });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    let name = input.nama;
-    let price = input.harga;
-    let weight = input.berat;
+    let name = input.name;
+    let price = input.price.toString();
 
-    if (
-      name.replace(/\s/g, "") !== "" &&
-      price.toString().replace(/\s/g, "") !== "" &&
-      weight.toString().replace(/\s/g, "") !== ""
-    ) {
-      if (statusForm === "create") {
+    if (name.replace(/\s/g, "") !== "" && price.replace(/\s/g, "") !== "") {
+      if (dataHargaBuah.statusForm === "create") {
         axios
           .post(`http://backendexample.sanbercloud.com/api/fruits`, {
-            name,
-            price,
-            weight,
+            name: input.name,
+            price: input.price,
+            weight: input.weight,
           })
           .then((res) => {
             console.log(res);
-            setDataHargaBuah([
-              ...dataHargaBuah,
-              { id: res.data.id, nama: name, harga: price, berat: weight },
-            ]);
+            setDataHargaBuah({
+              statusForm: "create",
+              selectedID: 0,
+              lists: [
+                ...dataHargaBuah.lists,
+                {
+                  id: res.data.id,
+                  name: input.name,
+                  price: input.price,
+                  weight: input.weight,
+                },
+              ],
+            });
           });
-      } else if (statusForm === "edit") {
+      } else if (dataHargaBuah.statusForm === "edit") {
         axios
           .put(
-            `http://backendexample.sanbercloud.com/api/fruits/${selectedID}`,
+            `http://backendexample.sanbercloud.com/api/fruits/${dataHargaBuah.selectedID}`,
             {
-              name,
-              price,
-              weight,
+              name: input.name,
+              price: input.price,
+              weight: input.weight,
             }
           )
-          .then((res) => {
-            console.log(res);
-            let dataBuah = dataHargaBuah.find((el) => el.id === selectedID);
-            dataBuah.nama = name;
-            dataBuah.harga = price;
-            dataBuah.berat = weight;
-            setDataHargaBuah([...dataHargaBuah]);
+          .then(() => {
+            let dataBuah = dataHargaBuah.lists.find(
+              (el) => el.id === dataHargaBuah.selectedID
+            );
+            dataBuah.name = input.name;
+            dataBuah.price = input.price;
+            dataBuah.weight = input.weight;
+            setDataHargaBuah({
+              statusForm: "create",
+              selectedID: 0,
+              lists: [...dataHargaBuah.lists],
+            });
           });
       }
 
-      setStatusForm("create");
-      setSelectedID(0);
-      setInput({ nama: "", harga: "", berat: "" });
+      setInput({ name: "", price: "", weight: 0 });
     }
   };
 
@@ -126,8 +103,8 @@ const FruitsForm = () => {
           <div className="col-75">
             <input
               type="text"
-              name="nama"
-              value={input.nama}
+              name="name"
+              value={input.name}
               onChange={handleChangeName}
               placeholder="Nama Buah"
             />
@@ -140,8 +117,8 @@ const FruitsForm = () => {
           <div className="col-75">
             <input
               type="text"
-              name="harga"
-              value={input.harga}
+              name="price"
+              value={input.price}
               onChange={handleChangePrice}
               placeholder="Harga Buah"
             />
@@ -154,8 +131,8 @@ const FruitsForm = () => {
           <div className="col-75">
             <input
               type="text"
-              name="berat"
-              value={input.berat}
+              name="weight"
+              value={input.weight}
               onChange={handleChangeWeight}
               placeholder="Satuan Gram"
             />
