@@ -5,7 +5,6 @@ import { BrowserRouter as Router } from "react-router-dom";
 // import UserInfo from "./UserInfo";
 import Header from "./Header";
 import Routes from "./tugas11/tugas15/Routes";
-import Nav from "./tugas11/tugas15/Nav";
 // import Lists from "./tugas11/tugas15/List";
 // import DaftarBuah from "./tugas11/DaftarBuah";
 // import Timer from "./tugas12/Timer";
@@ -27,7 +26,7 @@ function App() {
         <div className="container">
           <Timer start={120} />
         </div> */}
-        <Nav />
+        {/* <Nav /> */}
         <Routes />
         {/* <Lists /> */}
       </div>

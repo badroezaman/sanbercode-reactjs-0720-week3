@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { ThemeContext } from "./ThemeContext";
 
 const Nav = () => {
+  const [theme] = useContext(ThemeContext);
+
   return (
     <>
-      <div style={{ textAlign: "center" }}>
+      <nav
+        style={{
+          textAlign: "center",
+          background: theme === "dark" ? "navy" : "",
+        }}
+      >
         <ul style={{ listStyle: "none", display: "inline-flex", padding: "0" }}>
           <li
             style={{
@@ -24,24 +32,6 @@ const Nav = () => {
               Home
             </Link>
           </li>
-          {/* <li
-            style={{
-              padding: ".5em 1em",
-              borderBottom: ".1em solid #f9e03c",
-              margin: "0 .1em",
-            }}
-          >
-            <Link
-              to="/daftar-buah"
-              style={{
-                textDecoration: "none",
-                color: "#003366",
-                fontWeight: "bold",
-              }}
-            >
-              Daftar Buah
-            </Link>
-          </li> */}
           <li
             style={{
               padding: ".5em 1em",
@@ -115,7 +105,7 @@ const Nav = () => {
             </Link>
           </li>
         </ul>
-      </div>
+      </nav>
     </>
   );
 };
